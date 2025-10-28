@@ -76,3 +76,33 @@ at `api/loggers/performance_logger.py`.
 
 3) We need to add the `AccessLoggerMiddleware` middleware to the Fast-API application. To do that we need to modify the 
 `api/main.py`. The modification have been done following the FastAPI documentation on adding ASGI middleware ([Adding ASGI Middlewares](https://fastapi.tiangolo.com/advanced/middleware/#adding-asgi-middlewares))  and the documentation of[asgi-logging-middleware](https://github.com/alv2017/asgi-logging-middleware) package. 
+
+#### 5.3.3 Measuring the Response time of the `/api/health/` Endpoint
+
+We will create our own script that sends 100 consecutive requests to the `/api/health/` endpoint. Then we will parse the performance log file and calculate the average response time.
+
+Our script that sends requests to the endpoint can also measure the response time, this time on the client's side, hence we will be able to compare the server side response time with the client side response time!
+
+The scripts are identical to the scripts in [synchronous-block project](https://github.com/alv2017/synchronous-block).
+
+Script location: `measurements/response_times/api_health_endpoint/response_time.py`
+
+Server log results: `measurements/response_times/api_health_endpoint/api_health_performance.log`
+
+**Results:**
+
+1) Server side average response time for `/api/health/` endpoint: 0.3616 ms 
+2) Client side average response time for `/api/health/` endpoint: 1.5450 ms
+
+#### 5.3.4 Measuring the Response Time of the `/api/users/register/` Endpoint
+
+Script location: `measurements/response_times/api_register_endpoint/response_time.py`
+
+Server log results: `measurements/response_times/api_register_endpoint/api_health_performance.log`
+
+The scripts are identical to the scripts in [synchronous-block project](https://github.com/alv2017/synchronous-block).
+
+**Results:**
+
+1) Server side average response time for `/api/user/register/` endpoint: 218.0159 ms
+2) Client side average response time for `/api/user/register` endpoint: 219.6050 ms
